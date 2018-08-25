@@ -16,7 +16,7 @@ var validType = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 // validType.map(function(x){ return x.toLowerCase() })
 
 // word bank that will store all of our words to randomly choose from
-var wordBank = ["batman"];
+var wordBank = ["batman", "superman", "spiderman", "ironman", "hulk", "thor", "wolverine", "superwoman", "daredevil", "aquaman", "cyborg", "hercules", "blackpanther", "avengers", "batgirl", "ghostrider"];
 
 // counters that will keep track of wins and losses
 var wins = 0;
@@ -152,13 +152,12 @@ document.onkeyup = function (e) {
                     document.getElementById('win').textContent = "Wins: " + wins;
                     underscores = [];
                     wrongGuesses = [];
-                    var batmanobj = {
-                        urlobj: "https://www.youtube.com/watch?v=QXdWXPi_ngE",
-                    };
-                    console.log(currentWord+'obj'['urlobj']);
-                    window.open(currentWord+'obj'['urlobj']);
                     reset();
-
+                    // var batman = {
+                    //     url: "https://www.youtube.com/watch?v=QXdWXPi_ngE",
+                    // };
+                    // console.log(batman.url);
+                    // window.open(currentWord.url);
                 }
             }
             else if (!wrongGuesses.includes(userInput) && (!currentWord.includes(userInput))) {
