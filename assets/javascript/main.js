@@ -24,7 +24,7 @@ var losses = 0;
 
 // variable to keep track of all of guesses remainaing throughout the game
 // decreases by 1 if the user guesses an incorrect letter 
-var guessesLeft = 10;
+var guessesLeft = 12;
 
 // an array of letters that are not in the word
 var wrongGuesses = [];
@@ -120,7 +120,7 @@ document.onkeyup = function (e) {
         var userInput = e.key;
         guessesLeft--;
         if (guessesLeft < 0) {
-            guessesLeft = 10;
+            guessesLeft = 12;
             losses--;
             document.getElementById('lose').textContent = "Losses: " + losses;
 
@@ -149,6 +149,7 @@ document.onkeyup = function (e) {
                     === currentWord) {
                     console.log("Yay!");
                     wins++;
+                    guessesLeft = 12;
                     document.getElementById('win').textContent = "Wins: " + wins;
                     underscores = [];
                     wrongGuesses = [];
