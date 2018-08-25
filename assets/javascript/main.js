@@ -12,10 +12,11 @@
 //================= VARIABLES ================ //
 // variables declared on page load
 // debugger;
-var validType = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var validType = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+// validType.map(function(x){ return x.toLowerCase() })
 
 // word bank that will store all of our words to randomly choose from
-var wordBank = ["batman", "superman", "spiderman", "ironman", "hulk", "thor", "wolverine", "superwoman", "daredevil", "aquaman", "cyborg", "hercules", "blackpanther", "avengers", "batgirl", "ghostrider"];
+var wordBank = ["batman"];
 
 // counters that will keep track of wins and losses
 var wins = 0;
@@ -67,6 +68,8 @@ function reset() {
     }
 
 
+
+
     // TODO: 
     // we need to write syntax using the currentWord as our input and this should output an array of underscores according to the length of the currentWord
 
@@ -75,15 +78,23 @@ function reset() {
     // input -> ['_', '_', '_', '_', '_', '_', '_' ]
     // output -> '_ _ _ _ _ _ _'
 
-    console.log(underscores);
+    // console.log(underscores);
     var dashes = underscores.toString().replace(/,/g, " ");
+    var ashes = wrongGuesses.toString().replace(/,/g, " ");
 
-    console.log(dashes);
+
+    // console.log(dashes);
+    console.log(ashes);
+
 
     // 4. select an element in the html and display our underscores
-    console.log(document.getElementById('word-holder').textContent);
+    // console.log(document.getElementById('word-holder').textContent);
+    console.log(document.getElementById('word-wrong').textContent);
+
 
     document.getElementById('word-holder').textContent = dashes;
+    document.getElementById('word-wrong').textContent = ashes;
+
 
 
     // 5. display guessesRemaining, wins, and losses
@@ -101,51 +112,78 @@ function reset() {
 // USE CASE #2
 // capture user guess by using javascript document.onKeyUp
 document.onkeyup = function (e) {
-    // 1. store userGuess in a variable
-    // userInput = <value from the event object>
-    var userInput = e.key;
-    guessesLeft--;
-    if(guessesLeft < 0) {
-        guessesLeft = 10;
-        losses--;
-        document.getElementById('lose').textContent = "Losses: "+losses;
+    if (validType.includes(e.key)) {
+        // 1. store userGuess in a variable
+        // userInput = <value from the event object>
+        // e.preventDefault();
 
-    }
-    document.getElementById('guess').textContent = "Guesses Remaining: "+guessesLeft;
+        var userInput = e.key;
+        guessesLeft--;
+        if (guessesLeft < 0) {
+            guessesLeft = 10;
+            losses--;
+            document.getElementById('lose').textContent = "Losses: " + losses;
 
-    console.log("User typed: " + userInput);
-    // ex. 
-    // currentWord = 'seattle'
-    // userInput = 's'
+        }
+        document.getElementById('guess').textContent = "Guesses Remaining: " + guessesLeft;
 
-    // 2. check to see if userInput equals a letter in currentWord
-    // 'In javascript, How to check to see if a character exists in an string?'
-    // if the user guesses a correct letter
-    for (i = 0; i < currentWord.length; i++) {
-        if (userInput === currentWord[i]) {
-            underscores[i] = userInput;
-            dashes = underscores.toString().replace(/,/g, " ");
-            document.getElementById('word-holder').textContent = dashes;
+        console.log("User typed: " + userInput.toLowerCase());
+        // ex. 
+        // currentWord = 'seattle'
+        // userInput = 's'
 
-            // update the underscores array
-            // ex. output -> ['s', '_', '_', '_', '_', '_', '_' ]
-            // display updated array to the user
-            // console.log(currentWord.indexOf(userInput));
-            if (dashes.replace(/ /g, '')
-                === currentWord) {
-                console.log("Yay!");
-                wins++;
-                document.getElementById('win').textContent = "Wins: "+wins;
-                reset();
+        // 2. check to see if userInput equals a letter in currentWord
+        // 'In javascript, How to check to see if a character exists in an string?'
+        // if the user guesses a correct letter
+        for (i = 0; i < currentWord.length; i++) {
+            if (userInput === currentWord[i]) {
+                underscores[i] = userInput;
+                dashes = underscores.toString().replace(/,/g, " ");
+                document.getElementById('word-holder').textContent = dashes;
+
+                // update the underscores array
+                // ex. output -> ['s', '_', '_', '_', '_', '_', '_' ]
+                // display updated array to the user
+                // console.log(currentWord.indexOf(userInput));
+                if (dashes.replace(/ /g, '')
+                    === currentWord) {
+                    console.log("Yay!");
+                    wins++;
+                    document.getElementById('win').textContent = "Wins: " + wins;
+                    underscores = [];
+                    wrongGuesses = [];
+                    var batmanobj = {
+                        urlobj: "https://www.youtube.com/watch?v=QXdWXPi_ngE",
+                    };
+                    console.log(currentWord+'obj'['urlobj']);
+                    window.open(currentWord+'obj'['urlobj']);
+                    reset();
+
+                }
+            }
+            else if (!wrongGuesses.includes(userInput) && (!currentWord.includes(userInput))) {
+                wrongGuesses.push(userInput);
+                ashes = wrongGuesses.toString().replace(/,/g, " ");
+                document.getElementById('word-wrong').textContent = ashes;
+                console.log(wrongGuesses);
             }
         }
+
     }
 
     // if the user is incorrect
-    //else{
-    // push the wrong letter inside our wrongGuesses array
-    // decrement guessesRemaining by one
-    //}
+    else {
+        // push the wrong letter inside our wrongGuesses array
+        // decrement guessesRemaining by one
+        alert("Please press a key between a to z.");
+    }
 
 }
 document.body.addEventListener("load", reset());
+
+
+
+
+var superman = {
+    url: "https://www.youtube.com/watch?v=EngKxF3Cqh4",
+}
