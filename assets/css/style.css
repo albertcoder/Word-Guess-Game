@@ -1,0 +1,40 @@
+img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}
+
+h1 {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 60px;
+}
+
+#word-holder {
+    position: absolute;
+    top: 210px;
+    left: 50px;
+    color: whitesmoke;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+
+}
+
+#word-wrong {
+    position: absolute;
+    top: 210px;
+    left: 50px;
+    color: whitesmoke;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+
+}
+
+.nav-item {
+    padding-left: 40px;
+    padding-right: 40px;
+    border: 0.5px solid lightgray;
+}
