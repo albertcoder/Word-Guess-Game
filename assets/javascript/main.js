@@ -104,6 +104,15 @@ document.onkeyup = function (e) {
     // 1. store userGuess in a variable
     // userInput = <value from the event object>
     var userInput = e.key;
+    guessesLeft--;
+    if(guessesLeft < 0) {
+        guessesLeft = 10;
+        losses--;
+        document.getElementById('lose').textContent = "Losses: "+losses;
+
+    }
+    document.getElementById('guess').textContent = "Guesses Remaining: "+guessesLeft;
+
     console.log("User typed: " + userInput);
     // ex. 
     // currentWord = 'seattle'
@@ -121,7 +130,14 @@ document.onkeyup = function (e) {
             // update the underscores array
             // ex. output -> ['s', '_', '_', '_', '_', '_', '_' ]
             // display updated array to the user
-            console.log(currentWord.indexOf(userInput));
+            // console.log(currentWord.indexOf(userInput));
+            if (dashes.replace(/ /g, '')
+                === currentWord) {
+                console.log("Yay!");
+                wins++;
+                document.getElementById('win').textContent = "Wins: "+wins;
+                reset();
+            }
         }
     }
 
